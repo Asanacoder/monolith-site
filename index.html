@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MONOLITH — Men's Wedding Bands</title>
+<title>MONOLITH — Men's Wedding Bands</title><script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion')}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap');
 :root{--black:#080808;--coal:#111;--ivory:#f0ede6;--muted:#aaa49c;--line:rgba(255,255,255,.17);--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif}
@@ -20,6 +20,79 @@ a{color:inherit;text-decoration:none}img{display:block;width:100%}.shell{width:m
 footer{padding:65px 0 35px;background:#070707}.footgrid{display:grid;grid-template-columns:2fr repeat(3,1fr) 1.5fr;gap:50px}footer p,footer a{font-size:11px;color:#99948d}footer h4{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:400}footer a{display:block;margin:9px 0}.newsletter{border:1px solid #514e49;padding:13px 15px;margin-top:14px;display:flex;justify-content:space-between;color:#777;font-size:11px}.copyright{border-top:1px solid var(--line);margin-top:50px;padding-top:24px;color:#69655f;font-size:9px}
 @media(max-width:850px){.nav{grid-template-columns:1fr auto}.navlinks{display:none}.hero{min-height:670px;background-position:62% center}.hero h1{font-size:64px;max-width:6ch}.products{grid-template-columns:1fr}.collection h2{margin-bottom:300px}.product{background:rgba(0,0,0,.66);padding:22px;margin:1px 0}.split{grid-template-columns:1fr}.split-image{min-height:430px;order:-1}.ceremony{background-position:62% center}.trust{grid-template-columns:1fr 1fr}.footgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.navright{display:none}.hero{background-position:67% center}.hero-copy{padding-top:180px;align-self:flex-end;padding-bottom:45px}.hero h1{font-size:52px}.thesis{padding:55px 7vw}.collection h2{font-size:38px;margin-bottom:280px}.split-copy{padding:60px 7vw}.ceremony{min-height:620px;background-position:65% center}.ceremony .content{padding-top:180px}.trust{grid-template-columns:1fr}.trust-item{border-right:0;border-bottom:1px solid var(--line)}.footgrid{grid-template-columns:1fr}}
+
+/* --- Homepage motion layer: isolated + removable --- */
+.motion .nav{
+  position:sticky;top:0;
+  transition:background-color .35s ease,border-color .35s ease,box-shadow .35s ease;
+  backdrop-filter:blur(0);
+}
+.motion .nav.is-scrolled{
+  background:rgba(8,8,8,.90);
+  border-bottom-color:rgba(255,255,255,.12);
+  box-shadow:0 8px 28px rgba(0,0,0,.16);
+  backdrop-filter:blur(14px);
+}
+.motion .hero .eyebrow,
+.motion .hero h1,
+.motion .hero .sub,
+.motion .hero .btn{
+  opacity:0;
+  transform:translateY(24px);
+}
+.motion body.is-loaded .hero .eyebrow{animation:monoIntro .75s cubic-bezier(.22,1,.36,1) .10s forwards}
+.motion body.is-loaded .hero h1{animation:monoIntro .95s cubic-bezier(.22,1,.36,1) .22s forwards}
+.motion body.is-loaded .hero .sub{animation:monoIntro .80s cubic-bezier(.22,1,.36,1) .38s forwards}
+.motion body.is-loaded .hero .btn{animation:monoIntro .80s cubic-bezier(.22,1,.36,1) .50s forwards}
+@keyframes monoIntro{to{opacity:1;transform:translateY(0)}}
+
+.motion .reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:
+    opacity .85s cubic-bezier(.22,1,.36,1),
+    transform .85s cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+.motion .reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.motion .product.reveal{transform:translateY(18px)}
+.motion .product.reveal.is-visible{transform:translateY(0)}
+.motion .split-image,
+.motion .ceremony,
+.motion .final{
+  background-position-x:center;
+  transition:filter .6s ease;
+}
+.motion .btn{transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .25s cubic-bezier(.22,1,.36,1)}
+.motion .btn:hover{transform:translateY(-2px)}
+.motion .detail{transition:opacity .25s ease,letter-spacing .25s ease}
+.motion .detail:hover{opacity:.72;letter-spacing:.2em}
+
+@media(min-width:851px){
+  .motion .hero{background-position:center calc(38% + var(--parallax,0px))}
+  .motion .material-img{background-position:center calc(50% + var(--parallax,0px))}
+  .motion .ceremony{background-position:center calc(50% + var(--parallax,0px))}
+  .motion .ownership .split-image{background-position:center calc(50% + var(--parallax,0px))}
+  .motion .final{background-position:center calc(68% + var(--parallax,0px))}
+}
+@media(max-width:850px){
+  .motion .reveal{transform:translateY(14px);transition-duration:.68s}
+  .motion .hero .eyebrow,
+  .motion .hero h1,
+  .motion .hero .sub,
+  .motion .hero .btn{transform:translateY(14px)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.hero .eyebrow,.hero h1,.hero .sub,.hero .btn{
+    opacity:1!important;transform:none!important;animation:none!important;transition:none!important
+  }
+}
+
 </style>
 </head>
 <body>
@@ -33,4 +106,78 @@ footer{padding:65px 0 35px;background:#070707}.footgrid{display:grid;grid-templa
 <section class="trust"><div class="trust-item"><div class="icon">♢</div><strong>Lifetime warranty</strong><span>Built to last.</span></div><div class="trust-item"><div class="icon">⌁</div><strong>Complimentary engraving</strong><span>Make it personal.</span></div><div class="trust-item"><div class="icon">▱</div><strong>Free U.S. shipping</strong><span>On all orders.</span></div><div class="trust-item"><div class="icon">○</div><strong>Sizing guidance</strong><span>Find your fit.</span></div></section>
 <section class="final"><div class="shell"><div class="eyebrow">Built for forever</div><h2>Choose the object that stays.</h2><a class="btn" href="#bands">Find your band <span>→</span></a></div></section>
 <footer><div class="shell"><div class="footgrid"><div><div class="brand">MONOLITH</div><p>Objects for a more intentional life.</p></div><div><h4>Shop</h4><a href="#">Bands</a><a href="#">Materials</a><a href="#">Engraving</a><a href="#">Sizing</a></div><div><h4>Support</h4><a href="#">FAQs</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></div><div><h4>MONOLITH</h4><a href="#">Our Story</a><a href="#">Journal</a><a href="#">Careers</a><a href="#">Press</a></div><div><h4>Stay in touch</h4><p>Get updates on new releases and stories worth sharing.</p><div class="newsletter"><span>Your email</span><span>→</span></div></div></div><div class="copyright">© 2026 MONOLITH. All rights reserved.</div></div></footer>
+
+<script>
+(() => {
+  if (!document.documentElement.classList.contains('motion')) return;
+
+  const revealGroups = [
+    ['.thesis .eyebrow, .thesis p, .thesis .rule', 90],
+    ['.collection > .shell > .eyebrow, .collection > .shell > h2', 90],
+    ['.products .product', 110],
+    ['.split-copy > *', 85],
+    ['.ceremony .content > div > *', 90],
+    ['.trust-item', 80],
+    ['.final .shell > *', 90],
+    ['footer .footgrid > *', 70]
+  ];
+
+  revealGroups.forEach(([selector, step]) => {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', Math.min(i * step, 320) + 'ms');
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  requestAnimationFrame(() => document.body.classList.add('is-loaded'));
+
+  const nav = document.querySelector('.nav');
+  const parallaxTargets = [...document.querySelectorAll('.hero, .material-img, .ceremony, .ownership .split-image, .final')];
+  const desktopMotion = window.matchMedia('(min-width: 851px)');
+  let ticking = false;
+
+  const updateMotion = () => {
+    const y = window.scrollY;
+    nav?.classList.toggle('is-scrolled', y > 18);
+
+    if (desktopMotion.matches) {
+      const vh = window.innerHeight || 800;
+      parallaxTargets.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < vh) {
+          const progress = (vh - r.top) / (vh + r.height);
+          const shift = (progress - .5) * 18;
+          el.style.setProperty('--parallax', shift.toFixed(1) + 'px');
+        }
+      });
+    } else {
+      parallaxTargets.forEach((el) => el.style.removeProperty('--parallax'));
+    }
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateMotion);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  updateMotion();
+})();
+</script>
+
 </body></html>
