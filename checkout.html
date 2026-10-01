@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checkout — MONOLITH</title>
+<style>
+:root{--ink:#0a0a0a;--graphite:#141515;--graphite-2:#1b1c1c;--mineral:#f1eee7;--paper:#f8f6f1;--line:#d7d2c9;--muted:#716d66;--steel:#94918a;--copper:#9c7653;--white:#fff;--danger:#9d2f28;--radius:2px;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}
+html{background:var(--mineral);color:var(--ink)}
+body{margin:0;font-family:var(--sans);font-weight:400;background:var(--mineral);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+
+.checkout-header{height:78px;background:#090909;color:#f5f1e9;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(20px,4vw,64px);border-bottom:1px solid rgba(255,255,255,.12)}
+.checkout-header .back{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#a9a49d}
+.checkout-header .brand{font-size:15px;font-weight:600;letter-spacing:.38em;margin-left:.38em}
+.checkout-header .secure{justify-self:end;display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b8b2aa}
+.lock{width:11px;height:10px;border:1px solid currentColor;position:relative}
+.lock:before{content:"";position:absolute;width:6px;height:6px;border:1px solid currentColor;border-bottom:0;border-radius:6px 6px 0 0;left:1px;top:-6px}
+
+.checkout-shell{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(390px,.82fr);min-height:calc(100vh - 78px)}
+.checkout-main{padding:56px clamp(28px,6vw,92px) 90px clamp(28px,5vw,82px);background:var(--paper)}
+.order-summary{background:var(--graphite);color:#f2eee6;padding:56px clamp(28px,4.5vw,64px) 70px;position:relative}
+.order-summary:after{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:rgba(255,255,255,.09)}
+.summary-inner{position:sticky;top:34px;max-width:480px;margin:0 auto}
+
+.breadcrumb{display:flex;gap:10px;align-items:center;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#918c84;margin-bottom:38px}
+.breadcrumb strong{color:#222;font-weight:600}
+.breadcrumb span{opacity:.45}
+.checkout-title{font-family:var(--serif);font-size:clamp(38px,4vw,58px);font-weight:400;letter-spacing:-.035em;margin:0 0 10px;line-height:1}
+.checkout-intro{color:var(--muted);font-size:13px;line-height:1.55;margin:0 0 42px;max-width:620px}
+
+.section{padding:0 0 35px;margin:0 0 35px;border-bottom:1px solid var(--line)}
+.section:last-of-type{border-bottom:0;margin-bottom:14px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:19px}
+.section-number{font-size:9px;letter-spacing:.17em;color:#a39e95;margin-right:10px}
+.section h2{font-family:var(--serif);font-weight:400;font-size:24px;margin:0;letter-spacing:-.015em}
+.section-link{font-size:10px;text-decoration:underline;text-underline-offset:3px;color:#56524c}
+
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:#666159}
+.field input,.field select{height:50px;border:1px solid #cfc9bf;background:#fff;padding:0 14px;color:#121212;border-radius:var(--radius);outline:0;transition:border-color .18s ease,box-shadow .18s ease}
+.field input:focus,.field select:focus{border-color:#6b665e;box-shadow:0 0 0 1px #6b665e}
+.field input::placeholder{color:#aaa49b}
+
+.checkline{display:flex;align-items:flex-start;gap:11px;font-size:12px;line-height:1.5;color:#57534d;margin-top:14px}
+.checkline input{margin:2px 0 0;width:16px;height:16px;accent-color:#111}
+
+.delivery-card,.payment-card{border:1px solid #cbc5bb;background:#fff}
+.option{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:16px 17px;border-bottom:1px solid #e2ddd5}
+.option:last-child{border-bottom:0}
+.option input{accent-color:#111;width:16px;height:16px}
+.option strong{display:block;font-size:12px;font-weight:600}
+.option small{display:block;color:#817c74;font-size:10px;margin-top:4px}
+.option-price{font-size:12px}
+
+.payment-top{display:flex;justify-content:space-between;align-items:center;padding:17px;border-bottom:1px solid #e2ddd5}
+.payment-label{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600}
+.payment-label input{accent-color:#111;width:16px;height:16px}
+.cards{display:flex;gap:5px}
+.cardmark{border:1px solid #d1cbc1;background:#faf9f6;padding:4px 6px;font-size:8px;letter-spacing:.04em}
+.card-fields{padding:17px;display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#f4f1eb}
+.card-fields .full{grid-column:1/-1}
+.card-fields input{width:100%;height:47px;border:1px solid #ccc5ba;background:white;padding:0 13px;outline:0}
+.card-fields input:focus{border-color:#6b665e}
+.payment-alt{display:flex;align-items:center;gap:11px;padding:16px 17px;border-top:1px solid #e2ddd5;font-size:12px}
+.payment-alt input{accent-color:#111;width:16px;height:16px}
+
+.place-order{width:100%;border:0;background:#101111;color:#f4f0e8;height:58px;font-size:10px;text-transform:uppercase;letter-spacing:.17em;display:flex;align-items:center;justify-content:center;gap:22px;margin-top:18px;transition:background .2s ease,transform .2s ease}
+.place-order:hover{background:#262727;transform:translateY(-1px)}
+.legal{font-size:10px;line-height:1.55;color:#8a857e;margin:13px 0 0;text-align:center}
+
+.summary-kicker{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#918b83;margin-bottom:9px}
+.summary-title{font-family:var(--serif);font-size:31px;font-weight:400;margin:0 0 30px;letter-spacing:-.025em}
+.product-row{display:grid;grid-template-columns:82px 1fr auto;gap:17px;align-items:center;padding-bottom:27px;border-bottom:1px solid rgba(255,255,255,.13)}
+.product-image{width:82px;height:82px;background:#fff;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+.product-image img{width:100%;height:100%;object-fit:cover;display:block}
+.qty{position:absolute;right:-7px;top:-7px;background:#b8916c;color:#0d0d0d;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700;border:2px solid var(--graphite)}
+.product-name{font-family:var(--serif);font-size:18px;margin-bottom:7px}
+.product-meta{font-size:10px;line-height:1.5;color:#aaa39a}
+.product-price{font-size:13px;align-self:start;padding-top:2px}
+
+.discount{margin:22px 0;border-bottom:1px solid rgba(255,255,255,.13);padding-bottom:22px}
+.discount summary{list-style:none;cursor:pointer;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#c0b9b0;display:flex;justify-content:space-between}
+.discount summary::-webkit-details-marker{display:none}
+.discount summary:after{content:"+";font-size:15px;font-weight:300}
+.discount[open] summary:after{content:"−"}
+.discount-form{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:13px}
+.discount-form input{height:43px;border:1px solid rgba(255,255,255,.22);background:#0d0e0e;color:#eee8df;padding:0 12px;outline:0}
+.discount-form button{height:43px;border:1px solid rgba(255,255,255,.24);background:transparent;color:#eee8df;padding:0 15px;font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+
+.totals{display:grid;gap:13px;padding:2px 0 24px;border-bottom:1px solid rgba(255,255,255,.13)}
+.total-line{display:flex;justify-content:space-between;gap:20px;font-size:11px;color:#bcb6ad}
+.total-line strong{font-weight:400;color:#f3eee6}
+.total-final{display:flex;justify-content:space-between;align-items:flex-end;padding-top:24px}
+.total-final span:first-child{font-family:var(--serif);font-size:23px}
+.total-final .money{font-family:var(--serif);font-size:27px}
+.total-final small{font-family:var(--sans);font-size:9px;color:#9c968d;margin-right:7px}
+
+.summary-trust{margin-top:31px;display:grid;gap:0;border-top:1px solid rgba(255,255,255,.12)}
+.trust-row{display:grid;grid-template-columns:24px 1fr;gap:10px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.trust-icon{color:#b99370;font-size:16px}
+.trust-row strong{display:block;font-size:9px;letter-spacing:.13em;text-transform:uppercase;font-weight:500}
+.trust-row small{display:block;color:#8e8880;font-size:9px;margin-top:4px;line-height:1.45}
+
+.mobile-summary{display:none;background:var(--graphite);color:#f1ece4}
+.mobile-summary summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:17px 20px;cursor:pointer}
+.mobile-summary summary::-webkit-details-marker{display:none}
+.mobile-summary .label{font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.mobile-summary .amount{font-family:var(--serif);font-size:20px}
+.mobile-summary .mobile-detail{padding:0 20px 20px}
+.mobile-product{display:grid;grid-template-columns:62px 1fr auto;gap:12px;align-items:center;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.mobile-product img{width:62px;height:62px;object-fit:cover;background:#fff}
+.mobile-product strong{font-family:var(--serif);font-size:15px;font-weight:400}
+.mobile-product small{display:block;color:#9d968d;font-size:9px;margin-top:4px}
+
+.checkout-footer{display:flex;justify-content:space-between;gap:24px;padding-top:28px;font-size:9px;color:#938e86}
+.checkout-footer .links{display:flex;gap:18px;flex-wrap:wrap}
+
+/* Static prototype uses MONOLITH-owned classes. Production should keep the native Woo Checkout block
+   and move shared styling into theme.json/global styles rather than relying on Woo internals. */
+.wp-block-woocommerce-checkout{container-type:inline-size}
+
+@container (max-width:700px){
+  .fields{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .card-fields{grid-template-columns:1fr}
+  .card-fields .full{grid-column:auto}
+}
+
+@media(max-width:940px){
+  .checkout-header{height:68px;grid-template-columns:1fr auto;padding:0 20px}
+  .checkout-header .back{display:none}
+  .checkout-header .brand{justify-self:start}
+  .checkout-shell{display:block;min-height:0}
+  .order-summary{display:none}
+  .mobile-summary{display:block}
+  .checkout-main{padding:38px 22px 65px}
+  .breadcrumb{margin-bottom:28px}
+  .checkout-title{font-size:42px}
+}
+@media(max-width:540px){
+  .checkout-header .secure span:last-child{display:none}
+  .checkout-header .brand{font-size:14px}
+  .fields{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .section{padding-bottom:29px;margin-bottom:29px}
+  .section h2{font-size:22px}
+  .card-fields{grid-template-columns:1fr}
+  .card-fields .full{grid-column:auto}
+  .checkout-footer{display:block}
+  .checkout-footer .links{margin-top:13px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="checkout-header">
+  <a class="back" href="index.html">← Continue shopping</a>
+  <a class="brand" href="index.html">MONOLITH</a>
+  <div class="secure"><span class="lock" aria-hidden="true"></span><span>Secure checkout</span></div>
+</header>
+
+<details class="mobile-summary">
+  <summary><span class="label">Order summary</span><span class="amount">$549.00</span></summary>
+  <div class="mobile-detail">
+    <div class="mobile-product">
+      <img src="data:image/webp;base64,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" alt="Sample MONOLITH ring">
+      <div><strong>Antler / Copper 01</strong><small>8mm · Size 10 · Comfort fit</small></div>
+      <span>$549</span>
+    </div>
+  </div>
+</details>
+
+<main class="checkout-shell wp-block-woocommerce-checkout">
+  <section class="checkout-main mono-checkout">
+    <nav class="breadcrumb" aria-label="Checkout progress"><a href="#">Cart</a><span>/</span><strong>Checkout</strong><span>/</span><span>Confirmation</span></nav>
+    <h1 class="checkout-title">Complete your order.</h1>
+    <p class="checkout-intro">A quiet final step. Enter your delivery and payment details below.</p>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="section-number">01</span>Contact</h2><a class="section-link" href="#">Sign in</a></div>
+      <div class="fields">
+        <div class="field full"><label for="email">Email address</label><input id="email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+      </div>
+      <label class="checkline"><input type="checkbox" checked><span>Email me order and delivery updates.</span></label>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="section-number">02</span>Delivery</h2></div>
+      <div class="fields">
+        <div class="field full"><label for="country">Country / Region</label><select id="country"><option>United States</option></select></div>
+        <div class="field"><label for="first">First name</label><input id="first" autocomplete="given-name"></div>
+        <div class="field"><label for="last">Last name</label><input id="last" autocomplete="family-name"></div>
+        <div class="field full"><label for="address">Address</label><input id="address" autocomplete="street-address" placeholder="Street address"></div>
+        <div class="field full"><label for="apt">Apartment, suite, etc. <span style="text-transform:none;letter-spacing:0;color:#9e9991">(optional)</span></label><input id="apt"></div>
+        <div class="field"><label for="city">City</label><input id="city" autocomplete="address-level2"></div>
+        <div class="field"><label for="state">State</label><select id="state"><option>Florida</option></select></div>
+        <div class="field"><label for="zip">ZIP code</label><input id="zip" inputmode="numeric" autocomplete="postal-code"></div>
+        <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="section-number">03</span>Delivery method</h2></div>
+      <div class="delivery-card">
+        <label class="option"><input type="radio" name="shipping" checked><span><strong>Standard delivery</strong><small>Delivery estimate shown by WooCommerce shipping rates</small></span><span class="option-price">Calculated</span></label>
+        <label class="option"><input type="radio" name="shipping"><span><strong>Express delivery</strong><small>Available when supported for your destination</small></span><span class="option-price">—</span></label>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="section-number">04</span>Payment</h2></div>
+      <div class="payment-card">
+        <div class="payment-top">
+          <label class="payment-label"><input type="radio" name="pay" checked><span>Credit / debit card</span></label>
+          <div class="cards" aria-label="Example supported cards"><span class="cardmark">VISA</span><span class="cardmark">MC</span><span class="cardmark">AMEX</span></div>
+        </div>
+        <div class="card-fields">
+          <input class="full" aria-label="Card number" placeholder="Card number" inputmode="numeric">
+          <input aria-label="Expiration date" placeholder="MM / YY" inputmode="numeric">
+          <input aria-label="Security code" placeholder="Security code" inputmode="numeric">
+          <input class="full" aria-label="Name on card" placeholder="Name on card">
+        </div>
+        <label class="payment-alt"><input type="radio" name="pay"><span>Additional payment methods appear here when enabled in WooCommerce</span></label>
+      </div>
+      <label class="checkline"><input type="checkbox" checked><span>Use shipping address as billing address.</span></label>
+    </section>
+
+    <button class="place-order" type="button"><span>Place order</span><span>·</span><span>$549.00</span></button>
+    <p class="legal">Prototype only. Final terms, payment methods, taxes, shipping rates, and order validation are supplied by WooCommerce and the configured extensions.</p>
+
+    <footer class="checkout-footer">
+      <span>© 2026 MONOLITH</span>
+      <div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></div>
+    </footer>
+  </section>
+
+  <aside class="order-summary" aria-label="Order summary">
+    <div class="summary-inner">
+      <div class="summary-kicker">Your order</div>
+      <h2 class="summary-title">Order summary</h2>
+
+      <div class="product-row">
+        <div class="product-image"><img src="data:image/webp;base64,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" alt="Sample MONOLITH ring"><span class="qty">1</span></div>
+        <div><div class="product-name">Antler / Copper 01</div><div class="product-meta">8mm width<br>US size 10 · Comfort fit</div></div>
+        <div class="product-price">$549.00</div>
+      </div>
+
+      <details class="discount">
+        <summary>Gift card or discount code</summary>
+        <div class="discount-form"><input aria-label="Discount code" placeholder="Code"><button type="button">Apply</button></div>
+      </details>
+
+      <div class="totals">
+        <div class="total-line"><span>Subtotal</span><strong>$549.00</strong></div>
+        <div class="total-line"><span>Shipping</span><strong>Calculated after address</strong></div>
+        <div class="total-line"><span>Estimated tax</span><strong>Calculated at checkout</strong></div>
+      </div>
+      <div class="total-final"><span>Total</span><span class="money"><small>USD</small>$549.00</span></div>
+
+      <div class="summary-trust">
+        <div class="trust-row"><div class="trust-icon">◇</div><div><strong>Secure checkout</strong><small>Payment processing remains handled by WooCommerce-compatible gateways.</small></div></div>
+        <div class="trust-row"><div class="trust-icon">○</div><div><strong>Fit before finality</strong><small>Final sizing and exchange language will reflect verified MONOLITH policy.</small></div></div>
+        <div class="trust-row"><div class="trust-icon">□</div><div><strong>MONOLITH presentation</strong><small>Packaging details will reflect the final production presentation.</small></div></div>
+      </div>
+    </div>
+  </aside>
+</main>
+</body>
+</html>
