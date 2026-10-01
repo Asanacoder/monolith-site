@@ -13,6 +13,7 @@ Custom WordPress + WooCommerce build for the MONOLITH men's wedding-band brand.
 Read this before changing architecture, code organization, WooCommerce integration, product fields, or asset strategy:
 
 - [MONOLITH Build Blueprint](docs/MONOLITH-BUILD-BLUEPRINT.md)
+- [Project Decisions & Business Rules](docs/PROJECT-DECISIONS.md)
 
 ## Live visual preview
 
