@@ -1068,15 +1068,16 @@ It is done when:
 Before changing anything:
 
 1. Read this blueprint.
-2. Read `ABOUT-MONOLITH.txt`.
-3. Read the relevant product research files.
-4. Inspect the current GitHub repo instead of assuming structure.
-5. Inspect the current live preview when visual behavior matters.
-6. Decide whether the task belongs to preview, theme, MONOLITH Core, Woo config, product content, or media.
-7. Do not introduce architecture-changing dependencies without justification.
-8. Treat desktop and mobile together.
-9. Clean obsolete code during meaningful refactors.
-10. Preserve the permanent preview URL unless a migration explicitly requires change.
+2. Read `docs/PROJECT-DECISIONS.md` for the latest approved, provisional, recommended, and unresolved business rules.
+3. Read `ABOUT-MONOLITH.txt`.
+4. Read the relevant product research files.
+5. Inspect the current GitHub repo instead of assuming structure.
+6. Inspect the current live preview when visual behavior matters.
+7. Decide whether the task belongs to preview, theme, MONOLITH Core, Woo config, product content, or media.
+8. Do not introduce architecture-changing dependencies without justification.
+9. Treat desktop and mobile together.
+10. Clean obsolete code during meaningful refactors.
+11. Preserve the permanent preview URL unless a migration explicitly requires change.
 
 ---
 
