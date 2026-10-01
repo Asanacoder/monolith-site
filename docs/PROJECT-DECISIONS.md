@@ -172,12 +172,75 @@ Recommended scope:
 - Does MONOLITH provide a prepaid return label?
 - What condition must the returned ring be in?
 - Is original packaging required?
-- What happens when the ring was engraved and the size is wrong?
 - Does using the MONOLITH Fit Kit change any exchange eligibility or cost?
+- For the one-time lifetime replacement, must the original ring be returned?
+- Does a lifetime replacement include replacement engraving performed by MONOLITH, or only the replacement ring itself?
+- Is the paid replacement / store-credit amount finalized at $100?
+- Does store credit expire, transfer, or have product/category restrictions?
 
 ---
 
-## 6. Product / Policy Communication Principle
+
+## 6. Engraved Ring + Wrong Size / Lifetime Fit Replacement
+
+### One-time lifetime replacement concept
+**Status: APPROVED IN PRINCIPLE**
+
+MONOLITH plans to include a **one-time lifetime replacement ring benefit** intended for a future fit change, such as the wearer's finger becoming larger or otherwise changing over time.
+
+Owner intent:
+
+- the benefit is for **one additional replacement ring**
+- it may be used later in life when the customer's finger size changes
+- if an engraved ring turns out to be the wrong size, the customer may choose to use this one-time lifetime replacement immediately
+- if the customer uses the lifetime replacement for that engraved wrong-size ring, the one-time lifetime replacement benefit is considered consumed
+- third-party engraving performed by the customer after purchase is not reimbursed by MONOLITH
+
+This concept should be kept separate from ordinary returns and ordinary first size exchange rules.
+
+### Additional replacement after the lifetime benefit is used
+**Status: PROVISIONAL**
+
+Current owner direction is to allow another replacement through a **paid replacement contribution that converts into MONOLITH store credit**.
+
+Working model:
+
+- customer pays approximately **$100** for an additional replacement ring
+- MONOLITH supplies the replacement ring
+- the same **$100 becomes store credit** the customer can use later on MONOLITH merchandise
+- economically, the customer is not simply paying a replacement fee; the payment remains available to them as future purchasing power with the brand
+- current internal logic assumes the replacement ring may cost MONOLITH roughly $30, leaving margin while also encouraging a future purchase
+
+The owner initially considered $50, then moved toward **$100**; therefore the exact amount is not yet final.
+
+### Recommended customer-facing framing
+**Status: RECOMMENDED / AWAITING APPROVAL**
+
+Avoid describing the one-time lifetime benefit as a generic “lifetime warranty,” because customers may interpret that as unlimited defect/damage coverage.
+
+Consider separating the concepts:
+
+- **Lifetime Fit Replacement** — one replacement ring for a future size change
+- **Replacement Credit** — after that benefit has been used, an additional replacement can be obtained with a contribution that is returned as MONOLITH store credit
+
+This keeps fit-change coverage distinct from manufacturing-defect warranty coverage.
+
+### Open questions
+**Status: OPEN QUESTION**
+
+- Must the original ring be returned to use the one-time Lifetime Fit Replacement?
+- Does the replacement need to be the same ring model/configuration?
+- If MONOLITH engraved the original ring, is the same engraving included on the replacement?
+- Does the one-time benefit apply to loss/theft, or only physical possession + size change?
+- Is the additional replacement/store-credit amount **$100**?
+- Does store credit expire?
+- Is store credit transferable?
+- Can the credit be used on any MONOLITH product or only future ring purchases?
+- Is shipping included or charged separately?
+
+---
+
+## 7. Product / Policy Communication Principle
 
 **Status: APPROVED PROJECT PRINCIPLE**
 
@@ -194,7 +257,7 @@ Avoid vague overpromising. Product-specific claims must be verified before they 
 
 ---
 
-## 7. Interview-to-Repository Workflow
+## 8. Interview-to-Repository Workflow
 
 **Status: APPROVED**
 
@@ -214,13 +277,14 @@ During ongoing owner interviews:
 
 ---
 
-## 8. Topics Still To Resolve
+## 9. Topics Still To Resolve
 
 Current interview queue:
 
 - return policy for non-sizing dissatisfaction
-- engraved ring + wrong size
-- warranty scope
+- warranty scope (manufacturing defects vs Lifetime Fit Replacement)
+- finalize Lifetime Fit Replacement mechanics
+- finalize paid replacement + store-credit mechanics
 - accidental damage / discounted replacement
 - shipping / fulfillment timing
 - wedding-deadline / rush-order service
