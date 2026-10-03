@@ -6,6 +6,8 @@
 
 **Status date:** October 2026
 
+**Related research:** `docs/COMPETITOR-FIT-WARRANTY-RESEARCH.md` contains competitor benchmarks. Competitor policies are research only and do not become MONOLITH policy unless approved here.
+
 ---
 
 ## Status Labels
