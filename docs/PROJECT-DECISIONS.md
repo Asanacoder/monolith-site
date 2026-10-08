@@ -21,6 +21,28 @@
 
 ---
 
+## 0. Core Ecommerce Platform
+
+### WooCommerce remains the commerce engine
+**Status: APPROVED**
+
+After evaluating ChatGPT Sites, Shopify, and WooCommerce, the project owner confirmed that MONOLITH will **keep WooCommerce** as the core ecommerce platform.
+
+Current architecture remains:
+
+- WordPress = CMS/admin
+- WooCommerce = products, variants, inventory, cart, checkout, orders, taxes, shipping, customer/order state
+- MONOLITH custom theme = visual/frontend experience
+- MONOLITH Core = brand-specific metadata and custom business logic
+- ChatGPT Sites may still be considered later for separate interactive tools, prototypes, calculators, quizzes, or microsites, but **not as the primary MONOLITH commerce backend**
+- Shopify is not the current target platform
+
+Core principle remains:
+
+> **WooCommerce owns commerce. MONOLITH owns the experience.**
+
+---
+
 ## 1. Checkout / Transactional UI
 
 ### Approved visual direction
