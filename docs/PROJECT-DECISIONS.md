@@ -8,6 +8,8 @@
 
 **Related research:** `docs/COMPETITOR-FIT-WARRANTY-RESEARCH.md` contains competitor benchmarks. Competitor policies are research only and do not become MONOLITH policy unless approved here.
 
+**Architecture research:** `docs/CHATGPT-SITES-ECOMMERCE-EVALUATION.md` evaluates ChatGPT Sites vs Shopify vs WooCommerce. It is research only; the approved architecture remains unchanged unless explicitly revised.
+
 ---
 
 ## Status Labels
