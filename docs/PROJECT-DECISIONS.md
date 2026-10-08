@@ -43,6 +43,17 @@ Core principle remains:
 
 ---
 
+## 0B. WordPress AI Bridge
+
+### Direct agent-to-WordPress control
+**Status: RECOMMENDED / AWAITING IMPLEMENTATION APPROVAL**
+
+A proposed architecture for secure AI-driven WordPress/WooCommerce operations is documented in `docs/WORDPRESS-AI-BRIDGE.md`.
+
+The preferred model uses WordPress Abilities/MCP for controlled site/data operations and GitHub + staging deployment for code changes. This would allow an authorized agent to create/edit pages, media, products, product metadata, approved settings, and plugin operations while preserving auditable code deployment and rollback.
+
+---
+
 ## 1. Checkout / Transactional UI
 
 ### Approved visual direction
