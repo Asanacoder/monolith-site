@@ -189,6 +189,8 @@ final class Monolith_Bridge_Abilities {
 			'mcp_adapter_version' => defined( 'WP_MCP_VERSION' ) ? WP_MCP_VERSION : null,
 			'timezone'            => wp_timezone_string(),
 			'permalink_structure' => (string) get_option( 'permalink_structure' ),
+			'connector_endpoint'  => rest_url( Monolith_Bridge::SERVER_NAMESPACE . '/' . Monolith_Bridge::SERVER_ROUTE ),
+			'connector_mode'      => 'read-only',
 		);
 	}
 
