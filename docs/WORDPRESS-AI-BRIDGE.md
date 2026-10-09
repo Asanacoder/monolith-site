@@ -18,6 +18,29 @@ Current implementation is intentionally read-only and exposes six abilities:
 
 The plugin requires WordPress 6.9+ and the official WordPress MCP Adapter. Write/destructive abilities are not included yet. Next step is staging installation and discovery verification before adding write access.
 
+## Cost / Chat-Only Requirement
+
+**Status: APPROVED**
+
+The owner requires the WordPress bridge to work from normal ChatGPT conversations without using the OpenAI API or creating separate per-token model charges.
+
+Architecture requirement:
+
+- ChatGPT itself is the AI/model layer.
+- WordPress must **not** call OpenAI or another model provider.
+- Do not require `OPENAI_API_KEY`.
+- Do not use the WordPress AI Client for MONOLITH Bridge execution.
+- The WordPress MCP Adapter only exposes site abilities/tools.
+- MONOLITH Bridge executes WordPress/WooCommerce operations locally on the site.
+- Normal ChatGPT plan/tool usage limits may still apply; the bridge cannot guarantee unlimited ChatGPT usage.
+- The bridge itself should add no OpenAI API-token billing.
+
+Target flow:
+
+`ChatGPT conversation → ChatGPT plugin/connector → WordPress MCP Adapter → MONOLITH Bridge → WordPress/WooCommerce`
+
+---
+
 ## Goal
 
 Create a secure bridge that lets an authorized AI agent work directly with the MONOLITH WordPress/WooCommerce site for day-to-day site operations while preserving GitHub as the source of truth for code.
