@@ -54,6 +54,27 @@ The preferred model uses WordPress Abilities/MCP for controlled site/data operat
 
 ---
 
+## 0C. Temporary WordPress Theme
+
+### Clean interim theme before MONOLITH custom theme
+**Status: RECOMMENDED / AWAITING OWNER CONFIRMATION**
+
+Use the official **Twenty Twenty-Five** WordPress block theme as the temporary/staging theme instead of Divi or another page-builder theme.
+
+Reasoning:
+
+- core WordPress theme with minimal dependency footprint
+- no Divi/Elementor-style builder lock-in
+- native Site Editor / block structure
+- simple enough not to dictate MONOLITH's final visual system
+- easy to replace once the custom MONOLITH theme is ready
+
+Avoid building permanent MONOLITH layouts into the temporary theme. The final production presentation remains the custom MONOLITH theme.
+
+Divi / Divi Builder should be removed or kept inactive once legacy content has been migrated and verified.
+
+---
+
 ## 1. Checkout / Transactional UI
 
 ### Approved visual direction
