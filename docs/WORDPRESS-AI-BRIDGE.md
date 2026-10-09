@@ -404,3 +404,20 @@ The Bridge must not bypass the existing MONOLITH architecture.
 - MONOLITH Bridge exposes safe agent operations.
 
 The Bridge is an interface to the system, not a replacement for it.
+
+
+---
+
+## ChatGPT Private Connector
+
+**Status:** CREATED
+
+A private ChatGPT plugin named **MONOLITH WordPress** was created for the MONOLITH site.
+
+- Plugin ID: `plugins_6ac8b9dfcb3c8191a7a92b87c0c72f6b`
+- Scope: private personal plugin
+- MCP endpoint: `https://monolithbands.com/wp-json/mcp/mcp-adapter-default-server`
+- The plugin includes a mandatory site-identity safety rule: before any write action, verify the connected site is `monolithbands.com`.
+- The plugin does not use an OpenAI API key; ChatGPT remains the model layer.
+
+Next step: user opens the private plugin page, connects/authorizes the WordPress MCP endpoint, then runs a read-only site identity test before enabling any write workflow.
