@@ -421,3 +421,23 @@ A private ChatGPT plugin named **MONOLITH WordPress** was created for the MONOLI
 - The plugin does not use an OpenAI API key; ChatGPT remains the model layer.
 
 Next step: user opens the private plugin page, connects/authorizes the WordPress MCP endpoint, then runs a read-only site identity test before enabling any write workflow.
+
+
+---
+
+## Connector Authentication v0.2
+
+**Status:** BUILT / AWAITING WORDPRESS UPLOAD
+
+MONOLITH Bridge v0.2 uses a dedicated MCP endpoint at `/wp-json/monolith-mcp/chatgpt` instead of exposing the default WordPress MCP endpoint directly to ChatGPT.
+
+Security model:
+
+- ChatGPT sends a high-entropy private connector credential in the `X-Monolith-Key` request header.
+- WordPress stores only the SHA-256 hash of that credential in the bridge code; the plaintext credential is not committed to GitHub.
+- A successful connector request is mapped to the administrator who initialized the bridge, so normal WordPress capability checks continue to apply.
+- Version 0.2 remains read-only: site status, pages, plugins, and WooCommerce products only.
+- No OpenAI API key and no model API billing are used.
+- The private ChatGPT plugin `MONOLITH WordPress` was updated to v0.2.0 to use the dedicated endpoint and credential header.
+
+Next step: replace the installed MONOLITH Bridge v0.1.0 on `monolithbands.com` with v0.2.0, then visit Tools > MONOLITH Bridge once while logged in as the intended administrator. After that, run a read-only ChatGPT connection test.
