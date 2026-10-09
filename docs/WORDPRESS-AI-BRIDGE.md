@@ -41,6 +41,18 @@ Target flow:
 
 ---
 
+## Connection Test Status
+
+**Tested:** October 2026
+
+The WordPress MCP connector is functioning, but the currently connected WordPress site is **Asana Crystals** at `crystal-shop.co`, not MONOLITH.
+
+Read-only verification succeeded and exposed hundreds of WordPress/WooCommerce abilities.
+
+**Safety rule:** Do not execute MONOLITH write operations through this connection. A separate MONOLITH WordPress/staging connection must be configured before using the bridge for MONOLITH.
+
+---
+
 ## Goal
 
 Create a secure bridge that lets an authorized AI agent work directly with the MONOLITH WordPress/WooCommerce site for day-to-day site operations while preserving GitHub as the source of truth for code.
