@@ -3,6 +3,21 @@
 **Status:** Recommended architecture / awaiting implementation approval  
 **Date:** October 2026
 
+## Implementation Status
+
+**v0.1.0 built on branch `feature/wordpress-ai-bridge`.**
+
+Current implementation is intentionally read-only and exposes six abilities:
+
+- `monolith-bridge/site-status`
+- `monolith-bridge/list-pages`
+- `monolith-bridge/get-page`
+- `monolith-bridge/list-plugins`
+- `monolith-bridge/list-products`
+- `monolith-bridge/get-product`
+
+The plugin requires WordPress 6.9+ and the official WordPress MCP Adapter. Write/destructive abilities are not included yet. Next step is staging installation and discovery verification before adding write access.
+
 ## Goal
 
 Create a secure bridge that lets an authorized AI agent work directly with the MONOLITH WordPress/WooCommerce site for day-to-day site operations while preserving GitHub as the source of truth for code.
