@@ -10,6 +10,7 @@ final class Monolith_Bridge_Abilities {
 		self::register_list_plugins();
 		self::register_list_products();
 		self::register_get_product();
+		Monolith_Bridge_Admin::register();
 	}
 
 	private static function meta(): array {
@@ -190,7 +191,7 @@ final class Monolith_Bridge_Abilities {
 			'timezone'            => wp_timezone_string(),
 			'permalink_structure' => (string) get_option( 'permalink_structure' ),
 			'connector_endpoint'  => rest_url( Monolith_Bridge::SERVER_NAMESPACE . '/' . Monolith_Bridge::SERVER_ROUTE ),
-			'connector_mode'      => 'read-only',
+			'connector_mode'      => 'read-write',
 		);
 	}
 
