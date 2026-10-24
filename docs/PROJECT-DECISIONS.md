@@ -374,3 +374,21 @@ Implementation direction:
 - DEMO-003 may intentionally remain sparse to test one-image/missing-optional-content behavior.
 
 This temporary workflow does not change the production architecture: WooCommerce remains the product/commerce owner and the MONOLITH theme remains the presentation layer.
+
+
+---
+
+## 0E. MONOLITH Theme v0.3 — Prototype Migration
+
+**Status: IMPLEMENTED FOR DESIGN TESTING**
+
+Theme v0.3 migrates the approved static prototype language into the WordPress/WooCommerce theme:
+
+- homepage returns to an image-led cinematic presentation rather than abstract CSS-only objects
+- Support/Contact page ports the approved warm-mineral / graphite support hub design and prototype copy
+- Cart/Bag page ports the approved transactional visual language while keeping WooCommerce cart data and calculations native
+- Checkout ports the approved warm-mineral main surface + dark order-summary direction while keeping WooCommerce checkout, shipping, tax, payment and order logic native
+- responsive/mobile behavior is retained as a first-class requirement
+- demo catalog importer from v0.2 remains included
+
+The original static homepage used very large Base64-embedded image assets. v0.3 does not reintroduce those Base64 production assumptions; it uses bundled MONOLITH demo imagery as fallbacks and keeps homepage imagery replaceable through WordPress. Exact archival prototype image extraction can be handled separately if those exact photographs are required.
