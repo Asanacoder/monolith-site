@@ -352,3 +352,25 @@ Current interview queue:
 - support channels and realistic response times
 - exact Fit Kit contents and logistics
 
+
+
+---
+
+## 0D. Temporary Demo Catalog for Live Design Development
+
+### Live-site demo data is allowed during the design phase
+**Status: APPROVED**
+
+The project owner confirmed that `monolithbands.com` is currently an empty, non-indexed development storefront with effectively no visitors, and that temporary demo products may be published directly on the live site while the MONOLITH theme and WooCommerce layouts are being designed.
+
+Implementation direction:
+
+- MONOLITH Theme v0.2 may import the temporary demo catalog automatically on first activation/admin load when WooCommerce is active.
+- Demo products should be normal published WooCommerce products so real shop, PDP, cart, and checkout layouts can be evaluated.
+- Demo products and demo media must be internally tagged so the whole temporary catalog can be removed cleanly after design approval.
+- Re-running the importer must update/reuse the same demo SKUs rather than duplicate products.
+- Demo copy, pricing, and specifications are placeholders and must not be treated as approved product facts.
+- The Drive demo imagery is the source for the temporary visual catalog; source-reference and QA-marked assets should not be mistaken for final production media.
+- DEMO-003 may intentionally remain sparse to test one-image/missing-optional-content behavior.
+
+This temporary workflow does not change the production architecture: WooCommerce remains the product/commerce owner and the MONOLITH theme remains the presentation layer.
