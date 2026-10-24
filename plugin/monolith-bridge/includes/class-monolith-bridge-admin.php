@@ -219,6 +219,12 @@ final class Monolith_Bridge_Admin {
 			@unlink( $temp );
 			return $id;
 		}
+		if ( ! empty( $input['title'] ) ) {
+			wp_update_post( array(
+				'ID'         => $id,
+				'post_title' => sanitize_text_field( (string) $input['title'] ),
+			) );
+		}
 		if ( ! empty( $input['alt_text'] ) ) {
 			update_post_meta( $id, '_wp_attachment_image_alt', sanitize_text_field( (string) $input['alt_text'] ) );
 		}
