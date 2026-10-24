@@ -392,3 +392,26 @@ Theme v0.3 migrates the approved static prototype language into the WordPress/Wo
 - demo catalog importer from v0.2 remains included
 
 The original static homepage used very large Base64-embedded image assets. v0.3 does not reintroduce those Base64 production assumptions; it uses bundled MONOLITH demo imagery as fallbacks and keeps homepage imagery replaceable through WordPress. Exact archival prototype image extraction can be handled separately if those exact photographs are required.
+
+
+---
+
+## 0F. MONOLITH Theme v0.4 — Photo-Led Homepage Migration
+
+**Status: IMPLEMENTED FOR DESIGN TESTING**
+
+The live-theme homepage screenshots exposed that the prior WordPress migration was still rendering development placeholders (abstract CSS ring/slab objects and internal language such as “WooCommerce native”) instead of the established MONOLITH visual assets.
+
+Theme v0.4 corrects that by:
+
+- replacing the abstract homepage hero with the existing coastal-man MONOLITH hero image
+- using the existing sunset architectural ring imagery for the selected-bands atmosphere
+- using the existing brushed-ring sunset image for Materials
+- using the existing coastal wedding-embrace image for The Ceremony
+- using the existing gunmetal presentation-box image for Ownership
+- using existing architectural ring imagery for the closing CTA
+- keeping real WooCommerce products/data in the product cards
+- removing customer-facing implementation language from homepage trust blocks
+- adding stronger full-bleed/overflow rules so section imagery does not leak at the viewport edge
+
+The architecture remains unchanged: WooCommerce owns commerce; the theme owns the visual presentation. Homepage images remain replaceable through WordPress Customizer controls where already supported.
