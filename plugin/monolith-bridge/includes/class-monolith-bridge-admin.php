@@ -113,8 +113,11 @@ final class Monolith_Bridge_Admin {
 		if ( ! in_array( $method, array( 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' ), true ) ) {
 			return new WP_Error( 'monolith_method_invalid', 'Unsupported REST method.', array( 'status' => 400 ) );
 		}
-		if ( ! preg_match( '#^/(?:wp/v2|wc/v3)(?:/[A-Za-z0-9._~/-]+)?$#D', $path )
-			|| strpos( $path, '..' ) !== false || strpos( $path, '//' ) !== false ) {
+		$decoded_path = rawurldecode( $path );
+		if ( ! preg_match( '#^/(?:wp/v2|wc/v3)(?:/[A-Za-z0-9._~/%-]+)?$#D', $path )
+			|| preg_match( '/%(?![0-9A-Fa-f]{2})/', $path )
+			|| ! preg_match( '#^/(?:wp/v2|wc/v3)(?:/[A-Za-z0-9._~/-]+)?$#D', $decoded_path )
+			|| strpos( $decoded_path, '..' ) !== false || strpos( $decoded_path, '//' ) !== false ) {
 			return new WP_Error( 'monolith_path_invalid', 'Only simple wp/v2 and wc/v3 REST paths on the connected site are allowed.', array( 'status' => 400 ) );
 		}
 		$params = $input['params'] ?? array();
@@ -136,7 +139,8 @@ final class Monolith_Bridge_Admin {
 
 		$response = rest_do_request( $request );
 		if ( is_wp_error( $response ) ) {
-			$status = (int) ( $response->get_error_data()['status'] ?? 500 );
+			$error_data = $response->get_error_data();
+			$status = is_array( $error_data ) ? (int) ( $error_data['status'] ?? 500 ) : 500;
 			self::audit( $method, $path, $status );
 			return $response;
 		}
