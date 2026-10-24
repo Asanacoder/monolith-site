@@ -50,7 +50,7 @@ final class Monolith_Bridge {
 			self::SERVER_NAMESPACE,
 			self::SERVER_ROUTE,
 			'MONOLITH ChatGPT',
-			'Private MONOLITH read-only MCP server for the ChatGPT connector.',
+			'Private MONOLITH read/write MCP server for the ChatGPT connector.',
 			MONOLITH_BRIDGE_VERSION,
 			array( \WP\MCP\Transport\HttpTransport::class ),
 			\WP\MCP\Infrastructure\ErrorHandling\ErrorLogMcpErrorHandler::class,
@@ -62,6 +62,10 @@ final class Monolith_Bridge {
 				'monolith-bridge/list-plugins',
 				'monolith-bridge/list-products',
 				'monolith-bridge/get-product',
+				'monolith-bridge/rest-request',
+				'monolith-bridge/upload-media-url',
+				'monolith-bridge/upload-media-base64',
+				'monolith-bridge/audit-log',
 			),
 			array(),
 			array(),
@@ -152,14 +156,14 @@ final class Monolith_Bridge {
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'MONOLITH Bridge', 'monolith-bridge' ); ?></h1>
-			<p><?php esc_html_e( 'Version 0.2.0 exposes a deliberately small, read-only ability set through a private ChatGPT MCP endpoint protected by a connector credential.', 'monolith-bridge' ); ?></p>
+			<p><?php esc_html_e( 'Version 0.3.0 exposes WordPress and WooCommerce administration through authenticated, capability-checked MCP tools. Changes are audit logged.', 'monolith-bridge' ); ?></p>
 			<table class="widefat striped" style="max-width:900px">
 				<tbody>
 					<tr><th><?php esc_html_e( 'WordPress Abilities API', 'monolith-bridge' ); ?></th><td><?php echo $wp_ready ? esc_html__( 'Ready', 'monolith-bridge' ) : esc_html__( 'Unavailable', 'monolith-bridge' ); ?></td></tr>
 					<tr><th><?php esc_html_e( 'MCP Adapter', 'monolith-bridge' ); ?></th><td><?php echo $mcp_ready ? esc_html__( 'Ready', 'monolith-bridge' ) : esc_html__( 'Not active', 'monolith-bridge' ); ?></td></tr>
 					<tr><th><?php esc_html_e( 'MONOLITH ChatGPT endpoint', 'monolith-bridge' ); ?></th><td><code><?php echo esc_html( $endpoint ); ?></code></td></tr>
 					<tr><th><?php esc_html_e( 'Authorized WordPress operator', 'monolith-bridge' ); ?></th><td><?php echo $user ? esc_html( $user->user_login . ' (#' . $user_id . ')' ) : esc_html__( 'Not configured', 'monolith-bridge' ); ?></td></tr>
-					<tr><th><?php esc_html_e( 'Ability mode', 'monolith-bridge' ); ?></th><td><?php esc_html_e( 'Read-only foundation', 'monolith-bridge' ); ?></td></tr>
+					<tr><th><?php esc_html_e( 'Ability mode', 'monolith-bridge' ); ?></th><td><?php esc_html_e( 'Read/write administration', 'monolith-bridge' ); ?></td></tr>
 				</tbody>
 			</table>
 			<h2><?php esc_html_e( 'Exposed abilities', 'monolith-bridge' ); ?></h2>
@@ -170,8 +174,12 @@ final class Monolith_Bridge {
 				<li><code>monolith-bridge/list-plugins</code></li>
 				<li><code>monolith-bridge/list-products</code></li>
 				<li><code>monolith-bridge/get-product</code></li>
+				<li><code>monolith-bridge/rest-request</code></li>
+				<li><code>monolith-bridge/upload-media-url</code></li>
+				<li><code>monolith-bridge/upload-media-base64</code></li>
+				<li><code>monolith-bridge/audit-log</code></li>
 			</ul>
-			<p><?php esc_html_e( 'The connector credential is intentionally never displayed in WordPress. Write abilities will be added only after this read-only connection is verified.', 'monolith-bridge' ); ?></p>
+			<p><?php esc_html_e( 'The private connector credential is never displayed here. Read and write capabilities remain subject to the authorized WordPress administrator and the target REST endpoint permissions. No raw PHP or SQL execution is offered.', 'monolith-bridge' ); ?></p>
 		</div>
 		<?php
 	}
