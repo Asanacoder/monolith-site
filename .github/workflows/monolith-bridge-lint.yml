@@ -19,3 +19,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Syntax-check MONOLITH Bridge PHP
         run: find plugin/monolith-bridge -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Package installable WordPress plugin
+        run: (cd plugin && zip -qr ../monolith-bridge-v0.3.0.zip monolith-bridge)
+      - name: Publish installable plugin ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: MONOLITH-Bridge-v0.3.0
+          path: monolith-bridge-v0.3.0.zip
