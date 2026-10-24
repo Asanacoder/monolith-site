@@ -3,6 +3,56 @@
 **Status:** Recommended architecture / awaiting implementation approval  
 **Date:** October 2026
 
+## Implementation Status
+
+**v0.1.0 built on branch `feature/wordpress-ai-bridge`.**
+
+Current implementation is intentionally read-only and exposes six abilities:
+
+- `monolith-bridge/site-status`
+- `monolith-bridge/list-pages`
+- `monolith-bridge/get-page`
+- `monolith-bridge/list-plugins`
+- `monolith-bridge/list-products`
+- `monolith-bridge/get-product`
+
+The plugin requires WordPress 6.9+ and the official WordPress MCP Adapter. Write/destructive abilities are not included yet. Next step is staging installation and discovery verification before adding write access.
+
+## Cost / Chat-Only Requirement
+
+**Status: APPROVED**
+
+The owner requires the WordPress bridge to work from normal ChatGPT conversations without using the OpenAI API or creating separate per-token model charges.
+
+Architecture requirement:
+
+- ChatGPT itself is the AI/model layer.
+- WordPress must **not** call OpenAI or another model provider.
+- Do not require `OPENAI_API_KEY`.
+- Do not use the WordPress AI Client for MONOLITH Bridge execution.
+- The WordPress MCP Adapter only exposes site abilities/tools.
+- MONOLITH Bridge executes WordPress/WooCommerce operations locally on the site.
+- Normal ChatGPT plan/tool usage limits may still apply; the bridge cannot guarantee unlimited ChatGPT usage.
+- The bridge itself should add no OpenAI API-token billing.
+
+Target flow:
+
+`ChatGPT conversation → ChatGPT plugin/connector → WordPress MCP Adapter → MONOLITH Bridge → WordPress/WooCommerce`
+
+---
+
+## Connection Test Status
+
+**Tested:** October 2026
+
+The WordPress MCP connector is functioning, but the currently connected WordPress site is **Asana Crystals** at `crystal-shop.co`, not MONOLITH.
+
+Read-only verification succeeded and exposed hundreds of WordPress/WooCommerce abilities.
+
+**Safety rule:** Do not execute MONOLITH write operations through this connection. A separate MONOLITH WordPress/staging connection must be configured before using the bridge for MONOLITH.
+
+---
+
 ## Goal
 
 Create a secure bridge that lets an authorized AI agent work directly with the MONOLITH WordPress/WooCommerce site for day-to-day site operations while preserving GitHub as the source of truth for code.
@@ -354,3 +404,40 @@ The Bridge must not bypass the existing MONOLITH architecture.
 - MONOLITH Bridge exposes safe agent operations.
 
 The Bridge is an interface to the system, not a replacement for it.
+
+
+---
+
+## ChatGPT Private Connector
+
+**Status:** CREATED
+
+A private ChatGPT plugin named **MONOLITH WordPress** was created for the MONOLITH site.
+
+- Plugin ID: `plugins_6ac8b9dfcb3c8191a7a92b87c0c72f6b`
+- Scope: private personal plugin
+- MCP endpoint: `https://monolithbands.com/wp-json/mcp/mcp-adapter-default-server`
+- The plugin includes a mandatory site-identity safety rule: before any write action, verify the connected site is `monolithbands.com`.
+- The plugin does not use an OpenAI API key; ChatGPT remains the model layer.
+
+Next step: user opens the private plugin page, connects/authorizes the WordPress MCP endpoint, then runs a read-only site identity test before enabling any write workflow.
+
+
+---
+
+## Connector Authentication v0.2
+
+**Status:** BUILT / AWAITING WORDPRESS UPLOAD
+
+MONOLITH Bridge v0.2 uses a dedicated MCP endpoint at `/wp-json/monolith-mcp/chatgpt` instead of exposing the default WordPress MCP endpoint directly to ChatGPT.
+
+Security model:
+
+- ChatGPT sends a high-entropy private connector credential in the `X-Monolith-Key` request header.
+- WordPress stores only the SHA-256 hash of that credential in the bridge code; the plaintext credential is not committed to GitHub.
+- A successful connector request is mapped to the administrator who initialized the bridge, so normal WordPress capability checks continue to apply.
+- Version 0.2 remains read-only: site status, pages, plugins, and WooCommerce products only.
+- No OpenAI API key and no model API billing are used.
+- The private ChatGPT plugin `MONOLITH WordPress` was updated to v0.2.0 to use the dedicated endpoint and credential header.
+
+Next step: replace the installed MONOLITH Bridge v0.1.0 on `monolithbands.com` with v0.2.0, then visit Tools > MONOLITH Bridge once while logged in as the intended administrator. After that, run a read-only ChatGPT connection test.
