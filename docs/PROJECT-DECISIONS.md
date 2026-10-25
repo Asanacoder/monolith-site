@@ -500,3 +500,25 @@ The vocabulary must follow MONOLITH's brand foundation: composed masculinity, re
 
 Do not define the final term lists until enough real products are entered to ensure the vocabulary reflects the actual assortment rather than invented personas.
 
+
+
+---
+
+## 0J. Material Specimen Taxonomy
+
+**Status: APPROVED / INITIAL IMPLEMENTATION LIVE**
+
+MONOLITH uses a private custom taxonomy `monolith_specimen` as the reusable visual-study layer for premium PDP cards.
+
+It is separate from factual Woo attributes and from psychographic discovery taxonomies. Each specimen term can store a WordPress Media image, editorial description, family, display priority, and a source mapping back to factual Woo attributes.
+
+Koa Demo 001 currently carries four Material Specimen terms, in this display order:
+
+1. Koa Wood — Inlay
+2. Black Tungsten — Body
+3. Brushed + Polished — Finish
+4. Comfort Fit Interior — Detail
+
+The Koa PDP renders these dynamically from taxonomy data. Current images use DEMO-001 product imagery for the first implementation; standardized reusable specimen-master imagery should replace them as the library is produced.
+
+Rendering rule: show up to four physical specimen cards first. Prefer signature/high-value material, then body treatment, finish, and construction/detail. Use mood/discovery cards only as fallback when a simple product lacks enough meaningful physical specimen cards.
