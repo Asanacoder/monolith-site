@@ -432,3 +432,17 @@ MONOLITH will use **Ring Size as the only standard WooCommerce product variation
 - A materially different colorway/material treatment should be a separate product when it changes the product's visual identity or story.
 - This preserves the MONOLITH strategy that each ring feels like a distinct character rather than a large configurable matrix.
 
+
+
+---
+
+## 0G. Core Men's Ring Size Range — US 7–13
+
+**Status: APPROVED**
+
+MONOLITH standard men's wedding-band size range is **US 7–13 in half sizes**:
+
+7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13.
+
+This replaces the earlier broad 4–15 master range for normal catalog use. Ring Size remains the only standard WooCommerce variation attribute.
+
