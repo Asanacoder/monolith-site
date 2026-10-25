@@ -415,3 +415,20 @@ Theme v0.4 corrects that by:
 - adding stronger full-bleed/overflow rules so section imagery does not leak at the viewport edge
 
 The architecture remains unchanged: WooCommerce owns commerce; the theme owns the visual presentation. Homepage images remain replaceable through WordPress Customizer controls where already supported.
+
+
+---
+
+## 0F. Product Variation Rule — Size Only
+
+**Status: APPROVED**
+
+MONOLITH will use **Ring Size as the only standard WooCommerce product variation**.
+
+- Ring Size is the only normal customer-selectable WooCommerce variation.
+- Width is a global attribute/specification, not a variation.
+- If one design is sold in multiple widths (for example 6 mm and 8 mm), each width should normally be a separate product with its own photography/cinematic PDP, linked as sibling designs.
+- Color, base material, coating/plating, inlay, finish, profile, edge style, fit, and interior material are standardized WooCommerce attributes/taxonomies for filtering/comparison/specification, not variation generators.
+- A materially different colorway/material treatment should be a separate product when it changes the product's visual identity or story.
+- This preserves the MONOLITH strategy that each ring feels like a distinct character rather than a large configurable matrix.
+
