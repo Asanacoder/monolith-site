@@ -446,3 +446,35 @@ MONOLITH standard men's wedding-band size range is **US 7–13 in half sizes**:
 
 This replaces the earlier broad 4–15 master range for normal catalog use. Ring Size remains the only standard WooCommerce variation attribute.
 
+
+
+---
+
+## 0H. Product Taxonomy Architecture v1
+
+**Status: APPROVED WORKING SCHEMA**
+
+MONOLITH uses **11 global WooCommerce product attributes** as the standardized product-fact layer:
+
+1. Ring Size
+2. Band Width
+3. Base Material
+4. Band Color
+5. Coating / Plating
+6. Inlay & Accent Material
+7. Surface Finish
+8. Profile
+9. Fit
+10. Edge Style
+11. Interior Material
+
+Only **Ring Size** generates standard WooCommerce variations. Width and all other attributes are descriptive/filterable facts. A materially different width/color/material expression should normally be a separate product with its own cinematic PDP.
+
+The live WooCommerce vocabulary currently contains **105 controlled attribute terms** and all attribute archives are disabled.
+
+Curated product categories use **Wedding Bands** as the parent with these children: Tungsten Bands, Titanium Bands, Damascus Steel Bands, Black Wedding Bands, Meteorite Rings, Wood Rings, Bone & Antler Rings, Gemstone & Opal Rings, Minimalist Bands, Hammered & Textured Bands, and Gold-Tone Bands.
+
+Normal Woo product tags are not used for product facts. Production merchandising states such as New, Best Seller, Limited, Featured, Made to Order, and Ready to Ship should live as MONOLITH Core flags/custom fields instead of public tag archives.
+
+The authoritative detailed term list and ingestion rules live in the Drive document **MONOLITH — WooCommerce Product Data Architecture — v1.0**.
+
