@@ -522,3 +522,28 @@ Koa Demo 001 currently carries four Material Specimen terms, in this display ord
 The Koa PDP renders these dynamically from taxonomy data. Current images use DEMO-001 product imagery for the first implementation; standardized reusable specimen-master imagery should replace them as the library is produced.
 
 Rendering rule: show up to four physical specimen cards first. Prefer signature/high-value material, then body treatment, finish, and construction/detail. Use mood/discovery cards only as fallback when a simple product lacks enough meaningful physical specimen cards.
+
+
+---
+
+## 0K. Material Study + Character PDP Composition
+
+**Status: APPROVED / LIVE ON KOA**
+
+The approved product-page visual-study module uses one combined dark MONOLITH section:
+
+- top row: up to 4 Material Specimen cards
+- lower row: exactly 3 discovery groups when populated — Atmosphere, Archetype, Presence
+
+For Koa the current data is:
+
+- Material Specimens: Koa Wood; Black Tungsten; Brushed + Polished; Comfort Fit Interior
+- Atmosphere: Organic, Nocturnal
+- Archetype: Grounded, Quiet Romantic
+- Presence: Understated, Substantial
+
+Images are optional and dynamic. A card renders an image only when an approved WordPress Media attachment is assigned to the corresponding taxonomy term data. Do not use fake imagery, generic placeholder graphics, or empty image boxes.
+
+The temporary DEMO-001 product-photo assignments were removed from the Material Specimen terms. Approved standardized specimen/discovery images will be generated and attached later without changing the PDP template.
+
+Theme version implementing this composition: **0.6.1**.
