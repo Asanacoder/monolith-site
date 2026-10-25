@@ -547,3 +547,26 @@ Images are optional and dynamic. A card renders an image only when an approved W
 The temporary DEMO-001 product-photo assignments were removed from the Material Specimen terms. Approved standardized specimen/discovery images will be generated and attached later without changing the PDP template.
 
 Theme version implementing this composition: **0.6.1**.
+
+
+---
+
+## 0L. Character Visual Layering
+
+**Status: APPROVED / KOA TEST LIVE**
+
+Character cards use two independent backend media layers:
+
+1. cinematic background image
+2. transparent totem/icon overlay
+
+The assets are stored separately in WordPress Media Library and referenced through taxonomy term metadata. The theme composites them at render time. This allows either layer to be replaced without regenerating the other.
+
+Koa test mappings:
+- Atmosphere — Organic, Nocturnal — forest background + botanical/crescent totem
+- Archetype — Grounded, Quiet Romantic — mountain background + grounded mountain totem
+- Presence — Understated, Substantial — dark mountain background + restrained overlapping-ring totem
+
+Material cards remain single specimen images. Character cards use background + totem overlay. Missing assets render without fake placeholders.
+
+Theme test version: **0.6.2**.
