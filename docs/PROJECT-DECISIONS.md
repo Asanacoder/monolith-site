@@ -478,3 +478,25 @@ Normal Woo product tags are not used for product facts. Production merchandising
 
 The authoritative detailed term list and ingestion rules live in the Drive document **MONOLITH — WooCommerce Product Data Architecture — v1.0**.
 
+
+
+---
+
+## 0I. Discovery Taxonomy Layer
+
+**Status: APPROVED CONCEPT — TERMS NOT YET DEFINED**
+
+MONOLITH will maintain a separate psychographic/discovery layer in **MONOLITH Core**, distinct from factual WooCommerce product attributes.
+
+Planned custom taxonomies:
+
+1. **Atmosphere** — the visual/emotional world of the ring.
+2. **Archetype** — the kind of composed masculine personality the ring suits.
+3. **Presence** — how the ring expresses itself: quiet, grounded, refined, bold, etc.
+
+These taxonomies are intended for future quiz/recommendation systems, gifting guidance, related-product scoring, and editorial discovery. They should be private/internal by default and should not create public archive clutter unless a specific curated experience is intentionally built later.
+
+The vocabulary must follow MONOLITH's brand foundation: composed masculinity, restraint, depth, permanence, quiet power, emotional sincerity, and architectural sophistication. Avoid performative or costume-like masculine labels such as Viking, alpha, tactical, biker, or similar fantasy-masculinity framing.
+
+Do not define the final term lists until enough real products are entered to ensure the vocabulary reflects the actual assortment rather than invented personas.
+
