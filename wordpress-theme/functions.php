@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'MONOLITH_THEME_VERSION', '0.7.0' );
+define( 'MONOLITH_THEME_VERSION', '0.7.1' );
 require_once get_template_directory() . '/inc/demo-importer.php';
 require_once get_template_directory() . '/inc/product-discovery.php';
 require_once get_template_directory() . '/inc/monolith-studio.php';
@@ -163,3 +163,16 @@ function monolith_koa_cart_button_text( $text ) {
     return monolith_is_koa_pdp_prototype() ? 'Add to Bag' : $text;
 }
 add_filter( 'woocommerce_product_single_add_to_cart_text', 'monolith_koa_cart_button_text', 20 );
+
+
+/**
+ * Render the single-product purchase quantity as a hidden field (value 1).
+ * Customers can still change cart quantities after adding. This is strictly
+ * presentational and does not change stock or purchasing restrictions.
+ */
+add_filter( 'woocommerce_quantity_input_type', function( $type ) {
+    if ( function_exists( 'monolith_is_koa_pdp_prototype' ) && monolith_is_koa_pdp_prototype() ) {
+        return 'hidden';
+    }
+    return $type;
+}, 20 );
