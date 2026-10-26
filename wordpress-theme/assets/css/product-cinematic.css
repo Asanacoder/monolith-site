@@ -884,3 +884,49 @@ body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_ca
     transform:none!important;
   }
 }
+
+
+/* MONOLITH v0.7.2 — definitive purchase-state contrast.
+   A selected size activates the ivory CTA. Prior to selection, the outline
+   treatment deliberately stays readable, never nearly black on black. */
+body.monolith-cinematic-pdp .woocommerce div.product div.summary p.price,
+body.monolith-cinematic-pdp .woocommerce div.product div.summary p.price *,
+body.monolith-cinematic-pdp .woocommerce div.product div.summary span.price,
+body.monolith-cinematic-pdp .woocommerce div.product div.summary span.price .amount,
+body.monolith-cinematic-pdp .woocommerce div.product div.summary span.price bdi {
+  color:#f8f5ee!important;
+  opacity:1!important;
+}
+body.monolith-cinematic-pdp .woocommerce div.product div.summary p.price,
+body.monolith-cinematic-pdp .woocommerce div.product div.summary span.price {
+  text-shadow:0 1px 0 rgba(0,0,0,.2);
+}
+body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button:disabled,
+body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button.disabled,
+body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button.wc-variation-selection-needed {
+  background:#24211e!important;
+  background-image:none!important;
+  color:#f1e9de!important;
+  border:1px solid #8e806e!important;
+  opacity:1!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055)!important;
+  transform:none!important;
+  cursor:not-allowed;
+}
+body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button:disabled::after,
+body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button.disabled::after {
+  content:"→";
+  color:#d3bda4;
+}
+body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button:not(.disabled):not(:disabled) {
+  background:#eee8df!important;
+  background-image:none!important;
+  color:#161513!important;
+  border-color:#eee8df!important;
+  opacity:1!important;
+}
+body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button:not(.disabled):not(:disabled):hover {
+  background:#fffaf2!important;
+  color:#11100d!important;
+  border-color:#fffaf2!important;
+}
