@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'MONOLITH_THEME_VERSION', '0.7.1' );
+define( 'MONOLITH_THEME_VERSION', '0.7.2' );
 require_once get_template_directory() . '/inc/demo-importer.php';
 require_once get_template_directory() . '/inc/product-discovery.php';
 require_once get_template_directory() . '/inc/monolith-studio.php';
@@ -176,3 +176,37 @@ add_filter( 'woocommerce_quantity_input_type', function( $type ) {
     }
     return $type;
 }, 20 );
+
+
+/**
+ * Critical purchase contrast rules are emitted in the document head as well
+ * as in the versioned cinematic stylesheet. This guards against an upstream
+ * asset cache serving an older stylesheet, observed on the Koa pilot.
+ */
+add_action( 'wp_head', function() {
+    if ( ! function_exists( 'monolith_is_koa_pdp_prototype' ) || ! monolith_is_koa_pdp_prototype() ) {
+        return;
+    }
+    ?>
+    <style id="monolith-koa-purchase-contrast">
+    body.monolith-cinematic-pdp .woocommerce div.product div.summary .price,
+    body.monolith-cinematic-pdp .woocommerce div.product div.summary .price .amount,
+    body.monolith-cinematic-pdp .woocommerce div.product div.summary .price bdi,
+    body.monolith-cinematic-pdp .woocommerce div.product div.summary .price .woocommerce-Price-currencySymbol {
+        color:#f8f5ee!important;opacity:1!important;
+    }
+    body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button:disabled,
+    body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button.disabled,
+    body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button.wc-variation-selection-needed {
+        background:#24211e!important;background-image:none!important;
+        color:#f1e9de!important;border:1px solid #8e806e!important;
+        box-shadow:inset 0 1px 0 rgba(255,255,255,.055)!important;
+        opacity:1!important;
+    }
+    body.monolith-cinematic-pdp .woocommerce div.product form.cart .single_add_to_cart_button.button:not(.disabled):not(:disabled) {
+        background:#eee8df!important;background-image:none!important;
+        color:#161513!important;border-color:#eee8df!important;opacity:1!important;
+    }
+    </style>
+    <?php
+}, 110 );
